@@ -1,2 +1,2 @@
-# algorithms-and-dsa/dsa
+# algorithms-and-dsa
 
