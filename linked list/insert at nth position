@@ -88,12 +88,12 @@ int main() {
     int x,p;
     for(int i=0;i<n;i++)
     {
-        cout<<"enter the data "<<i+1<<endl;
+        cout<<"enter the data number"<<i+1<<endl;
     	cin>>x;
     	ins(x);
     }	
             print();
-            cout<<"enter the position"<<endl;
+            cout<<"enter the position you want to insert mew data"<<endl;
             cin>>p;
             cout<<"enter data";
             cin>>x;
