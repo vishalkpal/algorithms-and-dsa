@@ -7,7 +7,25 @@ struct node{
 	node* link;
 };
 struct node* head;
-
+void ins(int x)
+{
+    node *temp=new node;
+    temp->data=x;
+    temp->link=NULL;
+    node* ptr=head;
+    if(ptr==NULL)
+    {
+        head=temp;
+    }
+    else
+    {
+        while(ptr->link!=NULL)
+        {
+            ptr=ptr->link;
+        }
+        ptr->link=temp;
+    }
+}
 void calc(int p,int x)
 {
     int c=0;
@@ -35,7 +53,7 @@ void calc(int p,int x)
             ptr=ptr->link;
             cptr=cptr->link;
             c++;
-            if(c==p)
+            if(c==(p-1))
             {
                cptr=cptr->link;
                ptr->link=temp;
@@ -70,14 +88,16 @@ int main() {
     int x,p;
     for(int i=0;i<n;i++)
     {
-        cout<<"enter the position "<<endl;
-        cin>>p;
-    	cout<<endl<<"enter the data ";
+        cout<<"enter the data "<<i<<endl;
     	cin>>x;
-    	calc(p,x);
-    	print();
+    	ins(x);
     }	
-    
-
+            print();
+            cout<<"enter the position"<<endl;
+            cin>>p;
+            cout<<"enter data";
+            cin>>x;
+            calc(p,x);
+            print();
     return 0;
 }
