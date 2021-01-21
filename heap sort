@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+
+void print(int a[],int n)
+{
+    for(int i=0;i<n;i++)
+   {
+    cout<<a[i];
+   }
+   cout<<endl;
+}
+
+void heapify(int a[],int n,int i)
+{
+	int largest = i;
+	int l=2*i+1;
+	int r=2*i+2;
+	if (l < n && a[l] > a[largest]) 
+        largest = l; 
+  
+    
+    if (r < n && a[r] > a[largest]) 
+        largest = r; 
+  
+    
+    if (largest != i) { 
+       int t=a[i];
+       a[i]=a[largest];
+       a[largest]=t; 
+  
+         
+        heapify(a, n, largest); 
+    } 
+}
+
+void calc(int a[],int n)
+{
+	for(int i=n/2;i>0;i--)
+        heapify(a,n,i);
+     for(int i=n;i>0;i--)
+     {
+     	int t=a[0];
+     	a[0]=a[i];
+     	a[i]=t;
+     	heapify(a,i,0);
+     }
+}
+
+
+
+int main()
+{
+	int n;
+	cout<<"enter numer of element to be sorted"<<endl;
+	cin>>n;
+	int a[n+1];
+	cout<<" NOw enter the elements"<<endl;
+	for(int i=1;i<=n;i++)
+	{
+		cin>>a[i];
+	}
+	cout<<"sorted element are"<<endl;
+    calc(a,n);
+    print(a,n);
+
+}
