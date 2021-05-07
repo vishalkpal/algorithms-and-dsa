@@ -1,0 +1,40 @@
+
+class Solution
+{
+    public:
+    //Function to return the level order traversal of a tree.
+    int max=0;   
+    void deep(Node* root,int c)
+    {
+        if(c>max)
+          max=c;
+        if(root==NULL)
+        return;
+        deep(root->left,c+1);
+        deep(root->right,c+1);
+    }
+    
+    void bsf(Node* root,vector<int> &v,int l)
+    {
+        if(root==NULL) // if pointer becomes zero before l reaching 1
+        return ;
+        if(l==1)       // when l reaches 1 its pushed in v
+        { v.push_back(root->data); return;}
+      
+        bsf(root->left,v,l-1);
+        bsf(root->right,v,l-1);
+    }
+    vector<int> levelOrder(Node* root)
+    {
+      //Your code here
+      vector<int> v;
+      deep(root,0);       // first calculating the depth of tree
+      v.push_back(root->data);  // pushing s=first node in v
+      for(int i=1;i<=max;i++)  
+      {                        // traversing tree upto level i and push all nodes
+          bsf(root,v,i+1);     // in v
+      }
+      return v;
+      
+    }
+};
