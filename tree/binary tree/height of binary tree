@@ -1,0 +1,21 @@
+class Solution{
+    public:
+    //Function to find the height of a binary tree.
+    int max=0;   
+    void deep(Node* root,int c)
+    {
+        if(c>max)
+          max=c;
+        if(root==NULL)
+        return;
+        deep(root->left,c+1);
+        deep(root->right,c+1);
+        
+    }
+    int height(struct Node* root){
+        // code here
+      deep(root,0);
+      return max;
+      
+    }
+};
