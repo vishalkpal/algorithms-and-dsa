@@ -1,0 +1,38 @@
+
+void deep(Node* root,int c,int &max)
+{   
+    if(c>max)
+    max=c;
+    if(root==NULL)
+    return;
+    deep(root->left,c+1,max);
+    deep(root->right,c+1,max);
+}
+
+void viewleft(Node* root,vector<int> &v,int l,int L)
+{
+        if(root==NULL) 
+        return ;
+        if(v.size()>L)
+        return;
+        if(l==0)     
+        { v.push_back(root->data); return;}
+      
+        viewleft(root->left,v,l-1,L);
+         viewleft(root->right,v,l-1,L);
+}
+vector<int> leftView(Node *root)
+{
+   // Your code here
+   vector<int> v;
+   if(root==NULL)
+   return v;
+   int max=0;
+   deep(root,0,max);
+   v.push_back(root->data);
+   for(int i=1;i<=max;i++)
+   {
+       viewleft(root,v,i,i);
+   }
+   return v;
+}
