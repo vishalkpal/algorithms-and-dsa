@@ -1,7 +1,7 @@
 class Solution
 {
     public:
-    //Function to return a list of nodes visible from the top view 
+    //pre requisite vertical traversal of binary tree 
     //from left to right in Binary Tree.
      map <int,pair<int,int>> mp;
     void travel(Node* root,int l,int vd)
