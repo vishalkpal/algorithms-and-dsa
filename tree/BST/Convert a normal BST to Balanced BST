@@ -1,0 +1,40 @@
+void inorder(BinaryTreeNode<int>* root, vector<int>& inorderArray) {
+    if (root == NULL) {
+        return;
+    }
+
+    inorder(root->left, inorderArray);
+    inorderArray.push_back(root -> data);
+    inorder(root->right, inorderArray);
+}
+
+BinaryTreeNode<int>* bst(vector<int>& inorderArray, int start, int end) {
+    if (start > end) {
+        return NULL;
+    }
+
+    // Get the middle of the array and make it as the new root.
+    int mid = (start + end) / 2;
+
+    BinaryTreeNode<int>* root = new BinaryTreeNode<int> (inorderArray[mid]);
+
+    // Make the left half of array as the left subtree.
+    root -> left = bst(inorderArray, start, mid - 1);
+
+    // Make the right half of array as the right subtree.
+    root -> right = bst(inorderArray, mid + 1, end);
+
+    return root;
+
+}
+
+BinaryTreeNode<int>* balancedBst(BinaryTreeNode<int>* root) {
+    // Array to store the nodes in the order of inorder traversal.
+    vector<int> inorderArray;
+
+    inorder(root, inorderArray);
+
+    int n = inorderArray.size();
+
+    return bst(inorderArray, 0, n-1);
+}
