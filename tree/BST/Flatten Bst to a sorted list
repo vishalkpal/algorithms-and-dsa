@@ -1,0 +1,26 @@
+vector<int> v;
+void travel(TreeNode<int>* root)
+{
+    if(root==NULL) return;
+    travel(root->left);
+    v.push_back(root->data);
+    travel(root->right);
+}
+
+TreeNode<int> *flatten(TreeNode<int>* root) {
+    // Write your code here
+    travel(root);
+    TreeNode<int> *temp=NULL,*prev=NULL;
+    temp=new TreeNode<int>(v[0]);
+    int i=1;
+    TreeNode<int> *node = temp;
+    prev=temp;
+    while(i != v.size())
+    {
+        prev->right=temp=new TreeNode<int>(v[i]);
+        prev=temp;
+        i++;
+    }
+    v.clear();
+    return node;
+}
