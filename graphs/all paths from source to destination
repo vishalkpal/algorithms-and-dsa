@@ -1,1 +1,29 @@
-//
+public:
+int paths=0;
+
+void dfs(vector<vector<int>> &g, int s, int d,vector<bool> visit)
+{
+    if(s==d){
+        paths++; return;
+    }
+    visit[s]=1;
+    for(auto neigh: g[s]){
+        if(visit[neigh]==0)
+          dfs(g,neigh,d,visit);
+    }
+    visit[s]=0;
+}
+	int possible_paths(vector<vector<int>>edges, int n, int s, int d){
+	    // Code here
+	    vector<vector<int>> g(n);
+	    for(auto edge:edges){
+	       int src=edge[0];
+	       int dest=edge[1];
+	       g[src].push_back(dest);
+	    }
+	    
+	    vector<bool> visit(n,0);
+	    paths=0;
+	    dfs(g,s,d,visit);
+	    return paths;
+	}
